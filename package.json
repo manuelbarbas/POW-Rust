@@ -1,10 +1,10 @@
 {
-  "name": "@manuelbarbas/POW-Rust",
+  "name": "@manuelbarbas/pow-rust",
   "version": "0.1.0",
   "main": "index.js",
   "types": "index.d.ts",
   "napi": {
-    "name": "POW-Rust",
+    "name": "pow-rust",
     "triples": {
       "defaults": true,
       "additional": [
@@ -36,6 +36,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "github:manuelbarbas/POW-Rust"
+    "url": "github:manuelbarbas/pow-rust"
   }
 }

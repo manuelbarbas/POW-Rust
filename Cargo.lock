@@ -13,22 +13,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "POW-Rust"
-version = "0.1.0"
-dependencies = [
- "ethers",
- "hex",
- "napi",
- "napi-build",
- "napi-derive",
- "num_cpus",
- "parking_lot",
- "rand",
- "rayon",
- "tokio",
-]
-
-[[package]]
 name = "addr2line"
 version = "0.24.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2296,6 +2280,22 @@ name = "pkg-config"
 version = "0.3.32"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7edddbd0b52d732b21ad9a5fab5c704c14cd949e5e9a1ec5929a24fded1b904c"
+
+[[package]]
+name = "pow-rust"
+version = "0.1.0"
+dependencies = [
+ "ethers",
+ "hex",
+ "napi",
+ "napi-build",
+ "napi-derive",
+ "num_cpus",
+ "parking_lot",
+ "rand",
+ "rayon",
+ "tokio",
+]
 
 [[package]]
 name = "powerfmt"

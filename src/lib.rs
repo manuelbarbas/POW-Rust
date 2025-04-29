@@ -2,7 +2,7 @@
 
 mod miner; // Import your existing miner.rs file
 
-use ethers::types::{Address, U256};
+use ethers::types::Address;
 use napi::bindgen_prelude::*;
 use napi_derive::napi;
 use std::str::FromStr;
@@ -67,8 +67,41 @@ impl GasMiner {
       thread_count: None
     });
 
-    let batch_size = config.batch_size.map(|s| s as usize);
-    let thread_count = config.thread_count.map(|t| t as usize);
+      // Validate and convert batch_size
+    let batch_size = match config.batch_size {
+      Some(size) => {
+        // Ensure batch size is not zero and within reasonable limits
+        if size == 0 {
+          return Err(Error::from_reason("Batch size must be greater than zero".to_string()));
+        }
+        if size > 1_000_000 {
+          return Err(Error::from_reason("Batch size too large, must be less than 1,000,000".to_string()));
+        }
+        Some(size as usize)
+      },
+      None => None
+    };
+    
+    // Validate and convert thread_count
+    let thread_count = match config.thread_count {
+      Some(threads) => {
+        // Ensure thread count is not zero
+        if threads == 0 {
+          return Err(Error::from_reason("Thread count must be greater than zero".to_string()));
+        }
+        
+        // Ensure thread count doesn't exceed available CPUs
+        let available_cpus = num_cpus::get();
+        if threads as usize > available_cpus {
+          println!("Warning: Requested {} threads but only {} CPUs available, limiting to available CPUs", 
+                  threads, available_cpus);
+          Some(available_cpus)
+        } else {
+          Some(threads as usize)
+        }
+      },
+      None => None
+    };
 
     // Call your existing mining function with the converted u64 values
     let result = miner::mine_gas_for_transaction(nonce_u64, gas_u64, address, batch_size, thread_count)
