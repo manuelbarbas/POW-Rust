@@ -1,0 +1,22 @@
+[package]
+name = "POW-Rust"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+ethers = { version = "2.0", features = ["rustls"] }
+tokio = { version = "1.28", features = ["full"] }
+rand = "0.8"
+rayon = "1.7"
+num_cpus = "1.15"
+parking_lot = "0.12"
+# Add NAPI-RS dependencies
+napi = { version = "2.12", features = ["tokio_rt", "async"] }
+napi-derive = "2.12"
+hex = "0.4"
+
+[build-dependencies]
+napi-build = "2.0"

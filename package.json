@@ -1,0 +1,41 @@
+{
+  "name": "@manuelbarbas/POW-Rust",
+  "version": "0.1.0",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "napi": {
+    "name": "POW-Rust",
+    "triples": {
+      "defaults": true,
+      "additional": [
+        "x86_64-apple-darwin",
+        "x86_64-pc-windows-msvc",
+        "x86_64-unknown-linux-gnu",
+        "aarch64-apple-darwin"
+      ]
+    }
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@napi-rs/cli": "^2.16.1",
+    "@types/node": "^22.15.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "artifacts": "npx napi artifacts",
+    "build": "npx napi build --platform --release",
+    "build:debug": "npx napi build --platform",
+    "prepublishOnly": "npx napi prepublish -t npm",
+    "version": "npx napi version",
+    "test:js": "node test-js.js",
+    "test:ts": "ts-node test-ts.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github:manuelbarbas/POW-Rust"
+  }
+}
